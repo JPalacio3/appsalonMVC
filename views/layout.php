@@ -16,8 +16,7 @@
             <?php echo $contenido; ?>
         </div>
     </div>
-
-
+    HOLA;
 </body>
 
 </html>
