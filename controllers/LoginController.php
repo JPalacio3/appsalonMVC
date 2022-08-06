@@ -29,7 +29,7 @@ class LoginController
 
     public static function crear(Router $router)
     {
-        $usuario = new Usuario($_POST);
+        $usuario = new Usuario();
 
         // Alertas vacías
         $alertas = [];
