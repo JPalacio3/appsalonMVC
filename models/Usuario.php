@@ -63,11 +63,18 @@ class Usuario extends ActiveRecord
         $resultado = self::$db->query($query);
         if ($resultado->num_rows) {
             self::$alertas['error'][] = 'El usuario ya existe';
-        } else {
-            // No está ergistrado:
-
         }
 
         return $resultado;
+    }
+
+    public function hashPassword()
+    {
+        $this->password = password_hash($this->password, PASSWORD_BCRYPT);
+    }
+
+    public function crearToken()
+    {
+        $this->token = uniqid('Usr_token//');
     }
 }
