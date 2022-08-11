@@ -60,9 +60,6 @@ class LoginController
 
 
                     $email->enviarConfirmacion();
-
-
-                    debuguear($usuario);
                 }
             }
         }

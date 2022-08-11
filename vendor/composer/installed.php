@@ -3,7 +3,7 @@
         'name' => 'joelp/appsalon-mvc',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => 'cc3b1c5577d20a10162e032fa18b77486a454952',
+        'reference' => 'f1d6ce0040fce1f6a96108b9dd34cfdd39e5cbeb',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'joelp/appsalon-mvc' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'cc3b1c5577d20a10162e032fa18b77486a454952',
+            'reference' => 'f1d6ce0040fce1f6a96108b9dd34cfdd39e5cbeb',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
