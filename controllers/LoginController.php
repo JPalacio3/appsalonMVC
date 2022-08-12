@@ -60,11 +60,53 @@ class LoginController
 
 
                     $email->enviarConfirmacion();
+
+                    // Guardar el usuario en la base de datos:
+
+                    $resultado = $usuario->guardar();
+
+                    if ($resultado) {
+                        echo "<script>alert('Guardado Correctamente');</script>";
+                        header('Location: /mensaje');
+                    }
                 }
             }
         }
         $router->render('auth/crear-cuenta', [
             'usuario' => $usuario,
+            'alertas' => $alertas
+        ]);
+    }
+
+    public static function mensaje(Router $router)
+    {
+        $router->render('auth/mensaje');
+    }
+    public static function confirmar(Router $router)
+    {
+        $alertas = [];
+        $token = s($_GET['tok']);
+        $usuario = Usuario::where('token', $token);
+
+
+        if (empty($usuario)) {
+            //Mostrar mensaje de eror:
+            Usuario::setAlerta('error', 'Usuario No Válido');
+        } else {
+            // Modificar a ususario confirmado:
+            $usuario->confirmado = "1";
+            $usuario->token = null;
+            $usuario->guardar();
+            Usuario::setAlerta('exito', 'Cuenta verificada Correctamente'); ?>
+<script>
+alert('Cuenta verificada Correctamente');
+</script>
+
+<?php
+            $router->render('auth/login');
+        }
+        $alertas = Usuario::getAlertas();
+        $router->render('auth/confirmar-cuenta', [
             'alertas' => $alertas
         ]);
     }

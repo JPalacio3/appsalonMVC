@@ -26,9 +26,9 @@ class Usuario extends ActiveRecord
         $this->apellido = $args['apellido'] ?? '';
         $this->telefono = $args['telefono'] ?? '';
         $this->email = $args['email'] ?? '';
-        $this->admin = $args['admin'] ?? null;
+        $this->admin = $args['admin'] ?? 0;
         $this->token = $args['token'] ?? '';
-        $this->confirmado = $args['confirmado'] ?? null;
+        $this->confirmado = $args['confirmado'] ?? 0;
         $this->password = $args['password'] ?? '';
     }
 
@@ -75,6 +75,6 @@ class Usuario extends ActiveRecord
 
     public function crearToken()
     {
-        $this->token = uniqid('Usr_token//');
+        $this->token = uniqid();
     }
 }

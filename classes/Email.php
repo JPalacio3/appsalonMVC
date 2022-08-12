@@ -42,10 +42,10 @@ class Email
         $contenido = "<html>";
         $contenido .= "<p> <strong> Hola " . $this->nombre . "<br></strong> <br> Has creado tu cuenta en App Salon, solo debes
     confirmarla presionando el siguiente enlace</p>";
-        $contenido .= "<p> Presiona Aquí: <a href='http://localhost:6969/confirmar-cuenta?tok=" . $this->token . "'> Confirmar
+        $contenido .= "<p> Presiona Aqui: <a href='http://localhost:6969/confirmar-cuenta?tok=" . $this->token . "'> Confirmar
         Cuenta</a></p>";
-        $contenido .= "<p>Este correo se genera de manera automática por el sistema, Si tú no solicitaste esta cuenta, puedes
-    ignorar este correo</p>";
+        $contenido .= "<p>Este correo se genera de manera automatica por el sistema, <br>Si tu no solicitaste esta cuenta, puedes
+    ignorar este mensaje</p>";
         $contenido .= "
 
 </html>";
