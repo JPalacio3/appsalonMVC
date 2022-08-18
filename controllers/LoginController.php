@@ -20,7 +20,40 @@ class LoginController
 
             // Validar los datos del formulario de login
             $alertas = $auth->validarLogin();
+
+            if (empty($alertas)) {
+                // Comprobar que el usuario exista:
+                $usuario = Usuario::where('email', $auth->email);
+
+                if ($usuario) {
+                    //Verificar el Password:
+                    if ($usuario->comprobarPasswordAndVerificado($auth->password)) {
+
+                        //Autenticar al usuario:
+                        session_start();
+                        $_SESSION['id'] = $usuario->id;
+                        $_SESSION['nombre'] = $usuario->nombre . " " . $usuario->apellido;
+                        $_SESSION['email'] = $usuario->email;
+                        $_SESSION['login'] = true;
+
+                        // Redireccionamiento:
+                        if ($usuario->admin === "1") {
+                            $_SESSION['admin'] = $usuario->admin ?? null;
+                            header('Location: /admin');
+                        } else {
+                            header('Location: /cita');
+                        }
+
+                        debuguear($_SESSION);
+                    }
+                } else {
+                    Usuario::setAlerta('error', 'Usuario no encontrado');
+                }
+            }
         }
+        $alertas = Usuario::getAlertas();
+
+
         $router->render('auth/login', [
             'alertas' => $alertas ?? [],
             'auth' => $auth ?? null,
@@ -108,7 +141,7 @@ class LoginController
             //Mostrar mensaje de eror:
             Usuario::setAlerta('error', 'Usuario No Válido');
         } else {
-            // Modificar a ususrio confirmado:
+            // Modificar a usuario confirmado:
             $usuario->confirmado = "1";
             $usuario->token = null;
             $usuario->guardar();
