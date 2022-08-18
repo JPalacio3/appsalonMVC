@@ -10,7 +10,22 @@ class LoginController
 {
     public static function login(Router $router)
     {
-        $router->render('auth/login');
+        $alertas = [];
+        $auth = new Usuario;
+
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $auth = new Usuario($_POST);
+
+            // Validar los datos del formulario de login
+            $alertas = $auth->validarLogin();
+        }
+        $router->render('auth/login', [
+            'alertas' => $alertas ?? [],
+            'auth' => $auth ?? null,
+
+        ]);
     }
 
     public static function logout()
@@ -93,19 +108,19 @@ class LoginController
             //Mostrar mensaje de eror:
             Usuario::setAlerta('error', 'Usuario No Válido');
         } else {
-            // Modificar a ususario confirmado:
+            // Modificar a ususrio confirmado:
             $usuario->confirmado = "1";
             $usuario->token = null;
             $usuario->guardar();
-            Usuario::setAlerta('exito', 'Cuenta verificada Correctamente'); ?>
-<script>
-alert('Cuenta verificada Correctamente');
-</script>
+            Usuario::setAlerta('exito', 'Cuenta verificada Correctamente');
 
-<?php
-            $router->render('auth/login');
+
+            //Obtener alertas
+            $alertas = Usuario::getAlertas();
+            // $router->render('auth/login');
         }
-        $alertas = Usuario::getAlertas();
+
+        // renderizar la vista
         $router->render('auth/confirmar-cuenta', [
             'alertas' => $alertas
         ]);
