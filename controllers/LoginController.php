@@ -133,6 +133,7 @@ class LoginController
                 if ($resultado) {
                     Usuario::setAlerta('exito', 'Tu password ha sido cambiado con Éxito');
                     $error = true;
+                    header('Location: /');
                 }
             }
         }

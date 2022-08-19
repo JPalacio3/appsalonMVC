@@ -1,0 +1,11 @@
+.seccion {
+
+    .text-center {
+        text-align: center;
+    }
+
+    &:nth-child(2),
+    &:nth-child(3) {
+        display: none;
+    }
+}
