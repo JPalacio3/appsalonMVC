@@ -5,8 +5,5 @@
 
 <div class="acciones">
     <a href="/">INICIAR SESIÓN</a>
-
     <a href="/crear-cuenta">REGISTRA OTRA CUENTA</a>
-
-
 </div>

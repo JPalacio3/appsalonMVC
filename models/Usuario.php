@@ -70,6 +70,27 @@ class Usuario extends ActiveRecord
         return self::$alertas;
     }
 
+    // Validar Email de Recuperación de Password al olvidarlo:
+    public function validarEmail()
+    {
+        if (!$this->email) {
+            self::$alertas['error'][] = "El Email es Obligatorio";
+        }
+        return self::$alertas;
+    }
+
+    public function validarPassword()
+    {
+        if (!$this->password) {
+            self::$alertas['error'][] = "El password es Obligatorio";
+        }
+
+        if (strlen($this->password) < 6) {
+            self::$alertas['error'][] = "El password debe tener un mínimo de 6 caracteres";
+        }
+
+        return self::$alertas;
+    }
 
 
 
