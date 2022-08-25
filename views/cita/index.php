@@ -4,9 +4,9 @@
 <div id="app">
 
     <nav class="tabs">
-        <button class="actual" type="buttom" data-paso="1">Servicios</button>
-        <button type="buttom" data-paso="2">Tus Datos y Cita</button>
-        <button type="buttom" data-paso="3">Resumen</button>
+        <button type="button" data-paso="1">Servicios</button>
+        <button type="button" data-paso="2">Tus Datos y Cita</button>
+        <button type="button" data-paso="3">Resumen</button>
 
     </nav>
 
@@ -22,7 +22,7 @@
         <p class="text-center">Coloca tus datos y la fecha para tu cita</p>
 
 
-        <form class="formulario" action="">
+        <form class="formulario">
             <div class="campo">
                 <label for="nombre">Nombre: </label>
                 <input type="text" id="nombre" v-model="nombre" placeholder="Nombre" value="<?php echo $nombre  ?>"
@@ -62,7 +62,7 @@
     </div>
 
 
-
+    <?php $script = "<script src='build/js/app.js'> </script>"; ?>
 
 
 
