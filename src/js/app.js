@@ -18,6 +18,8 @@ function iniciarApp() {
     paginaSiguiente(); // Funcionalidad para el botón de página siguiente
 
     paginaAnterior(); // Funcionalidad para el botón de página anterior
+
+    consultarAPI(); // Consulta la API en el backend de PHP
 }
 
 
@@ -107,5 +109,22 @@ function paginaSiguiente() {
 }
 
 
+// Función para iniciar la Api que muestra los resultados de la BD
+async function consultarAPI() {
 
+    try {
+        const url = 'http://localhost:6969/api/servicios';
+        const resultado = await fetch(url);
+        const servicios = await resultado.json();
+
+        console.log(servicios);
+
+
+
+    } catch (error) {
+        console.log(error);
+    }
+
+
+}
 
