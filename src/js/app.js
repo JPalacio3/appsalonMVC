@@ -3,6 +3,7 @@ const pasoInicial = 1;
 const pasoFinal = 3;
 
 const cita = {
+    id: '',
     nombre: '',
     fecha: '',
     hora: '',
@@ -27,6 +28,7 @@ function iniciarApp() {
 
     consultarAPI(); // Consulta la API en el backend de PHP
 
+    idCliente();
     nombreCliente(); // Añade el nombre del cliente al objeto de cita
     seleccionarFecha(); // Añade la fecha de la cita al objeto de cita
     seleccionarHora(); // Añade la hora al objeto de la cita
@@ -191,6 +193,12 @@ function nombreCliente() {
 
 }
 
+function idCliente() {
+    cita.id = document.querySelector('#id').value;
+}
+
+
+
 function seleccionarFecha() {
     const inputFecha = document.querySelector('#fecha');
     inputFecha.addEventListener('input',(e) => {
@@ -267,9 +275,6 @@ function mostrarResumen() {
     // Formatear el DIV  de resumen
     const { nombre,fecha,hora,servicios } = cita;
 
-
-
-
     // Heading para servicios en Resumen
     const headingServicios = document.createElement('H3');
     headingServicios.textContent = 'Resúmen de Servicios';
@@ -326,6 +331,67 @@ function mostrarResumen() {
     resumen.appendChild(nombreCliente);
     resumen.appendChild(fechaCita);
     resumen.appendChild(horaCita);
-};
+
+    // Botón para crear una cita
+    const botonReservar = document.createElement('BUTTON');
+    botonReservar.classList.add('boton');
+    botonReservar.textContent = 'Reservar Cita';
+    botonReservar.onclick = reservarCita;
+
+    resumen.appendChild(botonReservar);
+}
+
+async function reservarCita() {
+
+    const { nombre,fecha,hora,servicios,id } = cita;
+
+    const idServicios = servicios.map(servicio => servicio.id);
+    // console.log(idServicios);
+
+    // Uso de FETCH API CON FormData
+    // Se crea un único objeto que será enviado al servidor, append es la forma en que se agregan los datos al objeto JSON que será enviado al servidor
+    const datos = new FormData();
+    datos.append('fecha',fecha);
+    datos.append('hora',hora);
+    datos.append('usuarioId',id);
+    datos.append('servicios',idServicios);
+
+    // console.log(datos); // De esta manera podemos ver el objeto creado, pero no los valores que se están escribiendo en el objeto.
+
+    // Para poder ver los resultados,y podeer inspeccionar que los datos que se están escribiendo en el formulario son correctos, usamos una sintaxis así:
+    // console.log([...datos]);
+
+    try {
+
+        // Petición hacia la api
+        const url = 'http://localhost:6969/api/citas';
+        const respuesta = await fetch(url,{
+            method: 'POST',
+            body: datos
+        });
+
+        const resultado = await respuesta.json();
+        // console.log(resultado.resultado);
+
+        if (resultado.resultado) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Cita Creada',
+                text: 'Tu cita fue creada Correctamente',
+                botton: 'OK'
+            }).then(() => {
+                setTimeout(() => {
+                    window.location.reload();
+                },500);
+            })
+        }
+    } catch (error) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Hubo un error al guardar la cita',
+        });
+    }
+}
 
 
