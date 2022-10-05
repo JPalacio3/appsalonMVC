@@ -18,34 +18,40 @@
     <ul class="citas">
         <?php
         $idCita = null;
-        foreach ($citas as $cita) {
+        foreach ($citas as $key => $cita) {
+            //debuguear($key);
 
-            if ($idCita !== $cita->id) { ?>
+            if ($idCita !== $cita->id) {
+                $total = 0;
+        ?>
         <li>
-            <p> ID: <span><?php echo $cita->id; ?></span></p>
-            <p> Hora: <span><?php echo $cita->hora; ?></span></p>
-            <p> Cliente: <span><?php echo $cita->cliente; ?></span></p>
-            <p> Email: <span><?php echo $cita->email; ?></span></p>
-            <p> Teléfono: <span><?php echo $cita->telefono; ?></span></p>
+            <p> ID : <span><?php echo $cita->id; ?></span></p>
+            <p> Hora : <span><?php echo $cita->hora; ?></span></p>
+            <p> Cliente : <span><?php echo $cita->cliente; ?></span></p>
+            <p> Email : <span><?php echo $cita->email; ?></span></p>
+            <p> Teléfono : <span><?php echo $cita->telefono; ?></span></p>
 
             <h3>Servicios</h3>
 
             <?php
                 $idCita = $cita->id;
             } // Fin de if
+            // Devolver el valor total de los servicios
+            $total += $cita->precio;
                 ?>
 
             <p class="servicio"> <?php echo $cita->servicio . " -> $ " . $cita->precio; ?></p>
+            <?php
+                $actual = $cita->id;
+                $proximo = $citas[$key + 1]->id ?? 0;
 
-        </li> <?php } // Fin de ForEach
-                        ?>
+                if (esUltimo($actual, $proximo)) { ?>
+            <p class="total"> Total : <span> $ <?php echo $total; ?> </span>
+            </p>
+            <?php } ?>
+            <?php } // Fin de ForEach
+            ?>
     </ul>
-
 </div>
-
-
-
-
-
 
 <?php include_once __DIR__ . '/../templates/barra.php'; ?>
