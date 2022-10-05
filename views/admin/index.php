@@ -13,6 +13,13 @@
         </div>
     </form>
 </div>
+
+<?php
+if (count($citas) == 0) {
+    echo "<h3> No hay citas en esta fecha</h3>";
+}
+?>
+
 <div id="citas-admin">
 
     <ul class="citas">
@@ -53,5 +60,8 @@
             ?>
     </ul>
 </div>
+
+
+<?php $script = "<script src='build/js/buscador.js'></script>"; ?>
 
 <?php include_once __DIR__ . '/../templates/barra.php'; ?>
