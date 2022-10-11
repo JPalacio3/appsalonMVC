@@ -11,6 +11,8 @@ class AdminController
     {
         session_start();
 
+        isAdmin();
+
         // Filtrar en el buscador de la fecha
         $fecha = $_GET['fecha'] ?? date('Y-m-d');
         $fechas = explode('-', $fecha);
