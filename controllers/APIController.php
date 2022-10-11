@@ -37,4 +37,23 @@ class APIController
 
         echo json_encode(['resultado' => $resultado]);
     }
+
+    // Eliminar un registro
+    public static function eliminar()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            //Leemos el id
+            $id = $_POST['id'];
+
+            // Creamos una instancia del objeto completo
+            $cita = Cita::find($id);
+
+            // Asignamos la función eliminar desde Active Record
+            $cita->eliminar;
+
+            //Redireccionamos hacia la página en donde estábamos previamente a ejecutar la función de eliminar
+            header('Location:' . $_SERVER['HTTP_REFERER']);
+        }
+    }
 }
