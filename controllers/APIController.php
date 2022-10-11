@@ -50,7 +50,7 @@ class APIController
             $cita = Cita::find($id);
 
             // Asignamos la función eliminar desde Active Record
-            $cita->eliminar;
+            $cita->eliminar();
 
             //Redireccionamos hacia la página en donde estábamos previamente a ejecutar la función de eliminar
             header('Location:' . $_SERVER['HTTP_REFERER']);
