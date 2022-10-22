@@ -44,3 +44,17 @@
         @include m.boton(v.$negro, v.$blanco);
     }
 }
+
+.barra-servicios {
+    margin-bottom: v.$separacion;
+
+    @include m.tablet {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .boton {
+        margin: 0 0 1rem 0;
+    }
+
+}
