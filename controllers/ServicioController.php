@@ -11,8 +11,14 @@ class ServicioController
     {
         session_start();
 
+        // Traer todos los registros de los servicios
+        $servicios = Servicio::all();
+
+
+
         $router->render('/servicios/index', [
             'nombre' => $_SESSION['nombre'],
+            'servicios' => $servicios
 
         ]);
     }
