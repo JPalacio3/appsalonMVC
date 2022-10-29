@@ -2260,7 +2260,7 @@ if (
                             }) ? ( ? P < country > _[a - z] {
                                 2
                             }) ? $ / ', $langcode, $matches) &&
-                                $langcode !== 'en') {
+                            $langcode !== 'en') {
                                 $foundlang = false;
                                 $langcode = 'en';
                             }
@@ -2327,6 +2327,7 @@ if (
                              * @return array
                              */
                             public
+
                             function getTranslations() {
                                 if (empty($this - > language)) {
                                     $this - > setLanguage(); // Set the default language.
@@ -2347,6 +2348,7 @@ if (
                              * @return string
                              */
                             public
+
                             function addrAppend($type, $addr) {
                                 $addresses = [];
                                 foreach($addr as $address) {
@@ -2366,6 +2368,7 @@ if (
                              * @return string
                              */
                             public
+
                             function addrFormat($addr) {
                                 if (empty($addr[1])) { //No name provided
                                     return $this - > secureHeader($addr[0]);
@@ -2389,6 +2392,7 @@ if (
                              * @return string
                              */
                             public
+
                             function wrapText($message, $length, $qp_mode = false) {
                                 if ($qp_mode) {
                                     $soft_break = sprintf(' =%s', static::$LE);
@@ -2493,6 +2497,7 @@ if (
                              * @return int
                              */
                             public
+
                             function utf8CharBoundary($encodedText, $maxLength) {
                                 $foundSplitPos = false;
                                 $lookBack = 3;
@@ -2539,6 +2544,7 @@ if (
                              * This is called automatically by createBody(), so you don't need to call it yourself.
                              */
                             public
+
                             function setWordWrap() {
                                 if ($this - > WordWrap < 1) {
                                     return;
@@ -2563,6 +2569,7 @@ if (
                              * @return string The assembled headers
                              */
                             public
+
                             function createHeader() {
                                 $result = '';
 
@@ -2674,6 +2681,7 @@ if (
                              * @return string
                              */
                             public
+
                             function getMailMIME() {
                                 $result = '';
                                 $ismultipart = true;
@@ -2721,7 +2729,7 @@ if (
                                         //The only remaining alternatives are quoted-printable and base64, which are both 7bit compatible
                                     } else {
                                         $result. = $this - > headerLine('Content-Transfer-Encoding', $this - >
-                                        Encoding);
+                                            Encoding);
                                     }
                                 }
 
@@ -2738,6 +2746,7 @@ if (
                              * @return string
                              */
                             public
+
                             function getSentMIMEMessage() {
                                 return static::stripTrailingWSP($this - > MIMEHeader.$this - > mailHeader).
                                 static::$LE.static::$LE.$this - > MIMEBody;
@@ -2749,6 +2758,7 @@ if (
                              * @return string
                              */
                             protected
+
                             function generateId() {
                                 $len = 32; //32 bytes = 256 bits
                                 $bytes = '';
@@ -2782,6 +2792,7 @@ if (
                              * @return string The assembled message body
                              */
                             public
+
                             function createBody() {
                                 $body = '';
                                 //Create unique IDs and preset boundaries
@@ -2800,7 +2811,7 @@ if (
                                 $bodyCharSet = $this - > CharSet;
                                 //Can we do a 7-bit downgrade?
                                 if (static::ENCODING_8BIT === $bodyEncoding && !$this - > has8bitChars($this - >
-                                    Body)) {
+                                        Body)) {
                                     $bodyEncoding = static::ENCODING_7BIT;
                                     //All ISO 8859, Windows codepage and UTF-8 charsets are ascii compatible up to 7-bit
                                     $bodyCharSet = static::CHARSET_ASCII;
@@ -2824,7 +2835,8 @@ if (
                                 //If lines are too long, and we're not already using an encoding that will shorten them,
                                 //change to quoted-printable transfer encoding for the alt body part only
                                 if (static::ENCODING_BASE64 !== $altBodyEncoding && static::hasLineLongerThanMax($this -
-                                        > AltBody)) {
+                                        >
+                                        AltBody)) {
                                     $altBodyEncoding = static::ENCODING_QUOTED_PRINTABLE;
                                 }
                                 //Use this as a preamble in all multipart message types
@@ -3104,6 +3116,7 @@ if (
                              * @return string
                              */
                             protected
+
                             function getBoundary($boundary, $charSet, $contentType, $encoding) {
                                 $result = '';
                                 if ('' === $charSet) {
@@ -3135,6 +3148,7 @@ if (
                              * @return string
                              */
                             protected
+
                             function endBoundary($boundary) {
                                 return static::$LE.
                                 '--'.$boundary.
@@ -3146,6 +3160,7 @@ if (
                              * PHPMailer only supports some preset message types, not arbitrary MIME structures.
                              */
                             protected
+
                             function setMessageType() {
                                 $type = [];
                                 if ($this - > alternativeExists()) {
@@ -3173,6 +3188,7 @@ if (
                              * @return string
                              */
                             public
+
                             function headerLine($name, $value) {
                                 return $name.
                                 ': '.$value.static::$LE;
@@ -3186,6 +3202,7 @@ if (
                              * @return string
                              */
                             public
+
                             function textLine($value) {
                                 return $value.static::$LE;
                             }
@@ -3208,6 +3225,7 @@ if (
                              * @return bool
                              */
                             public
+
                             function addAttachment(
                                 $path,
                                 $name = '',
@@ -3262,6 +3280,7 @@ if (
                              * @return array
                              */
                             public
+
                             function getAttachments() {
                                 return $this - > attachment;
                             }
@@ -3278,6 +3297,7 @@ if (
                              * @return string
                              */
                             protected
+
                             function attachAll($disposition_type, $boundary) {
                                 //Return text of body
                                 $mime = [];
@@ -3392,6 +3412,7 @@ if (
                              * @return string
                              */
                             protected
+
                             function encodeFile($path, $encoding = self::ENCODING_BASE64) {
                                 try {
                                     if (!static::fileIsAccessible($path)) {
@@ -3427,6 +3448,7 @@ if (
                              * @return string
                              */
                             public
+
                             function encodeString($str, $encoding = self::ENCODING_BASE64) {
                                 $encoded = '';
                                 switch (strtolower($encoding)) {
@@ -3473,6 +3495,7 @@ if (
                              * @return string
                              */
                             public
+
                             function encodeHeader($str, $position = 'text') {
                                 $matchcount = 0;
                                 switch (strtolower($position)) {
@@ -3568,6 +3591,7 @@ if (
                              * @return bool
                              */
                             public
+
                             function hasMultiBytes($str) {
                                 if (function_exists('mb_strlen')) {
                                     return strlen($str) > mb_strlen($str, $this - > CharSet);
@@ -3585,6 +3609,7 @@ if (
                              * @return bool
                              */
                             public
+
                             function has8bitChars($text) {
                                 return (bool) preg_match('/[\x80-\xFF]/', $text);
                             }
@@ -3602,6 +3627,7 @@ if (
                              * @return string
                              */
                             public
+
                             function base64EncodeWrapMB($str, $linebreak = null) {
                                 $start = '=?'.$this - > CharSet.
                                 '?B?';
@@ -3644,6 +3670,7 @@ if (
                              * @return string
                              */
                             public
+
                             function encodeQP($string) {
                                 return static::normalizeBreaks(quoted_printable_encode($string));
                             }
@@ -3659,6 +3686,7 @@ if (
                              * @return string
                              */
                             public
+
                             function encodeQ($str, $position = 'text') {
                                 //There should not be any EOL in the string
                                 $pattern = '';
@@ -3717,6 +3745,7 @@ if (
                              * @return bool True on successfully adding an attachment
                              */
                             public
+
                             function addStringAttachment(
                                 $string,
                                 $filename,
@@ -3781,6 +3810,7 @@ if (
                              *
                              */
                             public
+
                             function addEmbeddedImage(
                                 $path,
                                 $cid,
@@ -3852,6 +3882,7 @@ if (
                              * @return bool True on successfully adding an attachment
                              */
                             public
+
                             function addStringEmbeddedImage(
                                 $string,
                                 $cid,
@@ -3902,6 +3933,7 @@ if (
                              * @return bool
                              */
                             protected
+
                             function validateEncoding($encoding) {
                                 return in_array(
                                     $encoding,
@@ -3924,6 +3956,7 @@ if (
                              * @return bool
                              */
                             protected
+
                             function cidExists($cid) {
                                 foreach($this - > attachment as $attachment) {
                                     if ('inline' === $attachment[6] && $cid === $attachment[7]) {
@@ -3940,6 +3973,7 @@ if (
                              * @return bool
                              */
                             public
+
                             function inlineImageExists() {
                                 foreach($this - > attachment as $attachment) {
                                     if ('inline' === $attachment[6]) {
@@ -3956,6 +3990,7 @@ if (
                              * @return bool
                              */
                             public
+
                             function attachmentExists() {
                                 foreach($this - > attachment as $attachment) {
                                     if ('attachment' === $attachment[6]) {
@@ -3972,6 +4007,7 @@ if (
                              * @return bool
                              */
                             public
+
                             function alternativeExists() {
                                 return !empty($this - > AltBody);
                             }
@@ -3982,6 +4018,7 @@ if (
                              * @param string $kind 'to', 'cc', or 'bcc'
                              */
                             public
+
                             function clearQueuedAddresses($kind) {
                                 $this - > RecipientsQueue = array_filter(
                                     $this - > RecipientsQueue,
@@ -3996,6 +4033,7 @@ if (
                              * Clear all To recipients.
                              */
                             public
+
                             function clearAddresses() {
                                 foreach($this - > to as $to) {
                                     unset($this - > all_recipients[strtolower($to[0])]);
@@ -4008,6 +4046,7 @@ if (
                              * Clear all CC recipients.
                              */
                             public
+
                             function clearCCs() {
                                 foreach($this - > cc as $cc) {
                                     unset($this - > all_recipients[strtolower($cc[0])]);
@@ -4020,6 +4059,7 @@ if (
                              * Clear all BCC recipients.
                              */
                             public
+
                             function clearBCCs() {
                                 foreach($this - > bcc as $bcc) {
                                     unset($this - > all_recipients[strtolower($bcc[0])]);
@@ -4032,6 +4072,7 @@ if (
                              * Clear all ReplyTo recipients.
                              */
                             public
+
                             function clearReplyTos() {
                                 $this - > ReplyTo = [];
                                 $this - > ReplyToQueue = [];
@@ -4041,6 +4082,7 @@ if (
                              * Clear all recipient types.
                              */
                             public
+
                             function clearAllRecipients() {
                                 $this - > to = [];
                                 $this - > cc = [];
@@ -4053,6 +4095,7 @@ if (
                              * Clear all filesystem, string, and binary attachments.
                              */
                             public
+
                             function clearAttachments() {
                                 $this - > attachment = [];
                             }
@@ -4061,6 +4104,7 @@ if (
                              * Clear all custom headers.
                              */
                             public
+
                             function clearCustomHeaders() {
                                 $this - > CustomHeader = [];
                             }
@@ -4071,6 +4115,7 @@ if (
                              * @param string $msg
                              */
                             protected
+
                             function setError($msg) {
                                 ++$this - > error_count;
                                 if ('smtp' === $this - > Mailer && null !== $this - > smtp) {
@@ -4097,6 +4142,7 @@ if (
                              * @return string
                              */
                             public static
+
                             function rfcDate() {
                                 //Set the time zone to whatever the default is to avoid 500 errors
                                 //Will default to UTC if it's not set properly in php.ini
@@ -4112,6 +4158,7 @@ if (
                              * @return string
                              */
                             protected
+
                             function serverHostname() {
                                 $result = '';
                                 if (!empty($this - > Hostname)) {
@@ -4142,6 +4189,7 @@ if (
                              * @return bool
                              */
                             public static
+
                             function isValidHost($host) {
                                 //Simple syntax limits
                                 if (
@@ -4175,6 +4223,7 @@ if (
                              * @return string
                              */
                             protected
+
                             function lang($key) {
                                 if (count($this - > language) < 1) {
                                     $this - > setLanguage(); //Set the default language
@@ -4203,6 +4252,7 @@ if (
                              * @return string
                              */
                             private
+
                             function getSmtpErrorMessage($base_key) {
                                 $message = $this - > lang($base_key);
                                 $error = $this - > smtp - > getError();
@@ -4222,6 +4272,7 @@ if (
                              * @return bool True if an error did occur
                              */
                             public
+
                             function isError() {
                                 return $this - > error_count > 0;
                             }
@@ -4237,6 +4288,7 @@ if (
                              * @throws Exception
                              */
                             public
+
                             function addCustomHeader($name, $value = null) {
                                 if (null === $value && strpos($name, ':') !== false) {
                                     //Value passed in as name:value
@@ -4263,6 +4315,7 @@ if (
                              * @return array
                              */
                             public
+
                             function getCustomHeaders() {
                                 return $this - > CustomHeader;
                             }
@@ -4289,6 +4342,7 @@ if (
                              * @see PHPMailer::html2text()
                              */
                             public
+
                             function msgHTML($message, $basedir = '', $advanced = false) {
                                 preg_match_all('/(?<!-)(src|background)=["\'](.*)["\']/Ui', $message, $images);
                                 if (array_key_exists(2, $images)) {
@@ -4422,6 +4476,7 @@ if (
                              * @return string
                              */
                             public
+
                             function html2text($html, $advanced = false) {
                                 if (is_callable($advanced)) {
                                     return call_user_func($advanced, $html);
@@ -4443,6 +4498,7 @@ if (
                              * @return string MIME type of file
                              */
                             public static
+
                             function _mime_types($ext = '') {
                                 $mimes = [
                                     'xl' => 'application/excel',
@@ -4582,6 +4638,7 @@ if (
                              * @return string
                              */
                             public static
+
                             function filenameToType($filename) {
                                 //In case the path is a URL, strip any query string before getting extension
                                 $qpos = strpos($filename, '?');
@@ -4606,6 +4663,7 @@ if (
                              * @return string|array
                              */
                             public static
+
                             function mb_pathinfo($path, $options = null) {
                                 $ret = ['dirname' => '', 'basename' => '', 'extension' => '', 'filename' => ''];
                                 $pathinfo = [];
@@ -4657,6 +4715,7 @@ if (
                              * @return bool
                              */
                             public
+
                             function set($name, $value = '') {
                                 if (property_exists($this, $name)) {
                                     $this - > {
@@ -4678,6 +4737,7 @@ if (
                              * @return string
                              */
                             public
+
                             function secureHeader($str) {
                                 return trim(str_replace(["\r", "\n"], '', $str));
                             }
@@ -4693,6 +4753,7 @@ if (
                              * @return string
                              */
                             public static
+
                             function normalizeBreaks($text, $breaktype = null) {
                                 if (null === $breaktype) {
                                     $breaktype = static::$LE;
@@ -4715,6 +4776,7 @@ if (
                              * @return string The text to remove breaks from
                              */
                             public static
+
                             function stripTrailingWSP($text) {
                                 return rtrim($text, " \r\n\t");
                             }
@@ -4725,6 +4787,7 @@ if (
                              * @return string
                              */
                             public static
+
                             function getLE() {
                                 return static::$LE;
                             }
@@ -4735,6 +4798,7 @@ if (
                              * @param string $le
                              */
                             protected static
+
                             function setLE($le) {
                                 static::$LE = $le;
                             }
@@ -4748,6 +4812,7 @@ if (
                              * @param string $extracerts_filename Optional path to chain certificate
                              */
                             public
+
                             function sign($cert_filename, $key_filename, $key_pass, $extracerts_filename = '') {
                                 $this - > sign_cert_file = $cert_filename;
                                 $this - > sign_key_file = $key_filename;
@@ -4763,6 +4828,7 @@ if (
                              * @return string
                              */
                             public
+
                             function DKIM_QP($txt) {
                                 $line = '';
                                 $len = strlen($txt);
@@ -4789,6 +4855,7 @@ if (
                              * @return string The DKIM signature value
                              */
                             public
+
                             function DKIM_Sign($signHeader) {
                                 if (!defined('PKCS7_TEXT')) {
                                     if ($this - > exceptions) {
@@ -4832,6 +4899,7 @@ if (
                              * @return string
                              */
                             public
+
                             function DKIM_HeaderC($signHeader) {
                                 //Normalize breaks to CRLF (regardless of the mailer)
                                 $signHeader = static::normalizeBreaks($signHeader, self::CRLF);
@@ -4877,6 +4945,7 @@ if (
                              * @return string
                              */
                             public
+
                             function DKIM_BodyC($body) {
                                 if (empty($body)) {
                                     return self::CRLF;
@@ -4900,6 +4969,7 @@ if (
                              * @return string
                              */
                             public
+
                             function DKIM_Add($headers_line, $subject, $body) {
                                 $DKIMsignatureType = 'rsa-sha256'; //Signature & hash algorithms
                                 $DKIMcanonicalization = 'relaxed/simple'; //Canonicalization methods of header & body
@@ -4980,7 +5050,7 @@ if (
                                                     $copiedHeaders[] = $header['label'].
                                                     ':'. //Note no space after this, as per RFC
                                                     str_replace('|', '=7C', $this - > DKIM_QP($header[
-                                                    'value']));
+                                                        'value']));
                                                 }
                                                 //Skip straight to the next header
                                                 continue 2;
@@ -5066,6 +5136,7 @@ if (
                              * @return bool
                              */
                             public static
+
                             function hasLineLongerThanMax($str) {
                                 return (bool) preg_match('/^(.{'.(self::MAX_LINE_LENGTH + strlen(static::$LE)).
                                     ',})/m', $str);
@@ -5082,6 +5153,7 @@ if (
                              * @see RFC822 3.4.1
                              */
                             public static
+
                             function quotedString($str) {
                                 if (preg_match('/[ ()<>@,;:"\/\[\]?=]/', $str)) {
                                     //If the string contains any of these chars, it must be double-quoted
@@ -5101,6 +5173,7 @@ if (
                              * @return array
                              */
                             public
+
                             function getToAddresses() {
                                 return $this - > to;
                             }
@@ -5112,6 +5185,7 @@ if (
                              * @return array
                              */
                             public
+
                             function getCcAddresses() {
                                 return $this - > cc;
                             }
@@ -5123,6 +5197,7 @@ if (
                              * @return array
                              */
                             public
+
                             function getBccAddresses() {
                                 return $this - > bcc;
                             }
@@ -5134,6 +5209,7 @@ if (
                              * @return array
                              */
                             public
+
                             function getReplyToAddresses() {
                                 return $this - > ReplyTo;
                             }
@@ -5145,6 +5221,7 @@ if (
                              * @return array
                              */
                             public
+
                             function getAllRecipientAddresses() {
                                 return $this - > all_recipients;
                             }
@@ -5162,6 +5239,7 @@ if (
                              * @param array  $extra
                              */
                             protected
+
                             function doCallback($isSent, $to, $cc, $bcc, $subject, $body, $from, $extra) {
                                 if (!empty($this - > action_function) && is_callable($this - > action_function)) {
                                     call_user_func($this - > action_function, $isSent, $to, $cc, $bcc, $subject, $body,
@@ -5175,6 +5253,7 @@ if (
                              * @return OAuthTokenProvider
                              */
                             public
+
                             function getOAuth() {
                                 return $this - > oauth;
                             }
@@ -5183,6 +5262,7 @@ if (
                              * Set an OAuthTokenProvider instance.
                              */
                             public
+
                             function setOAuth(OAuthTokenProvider $oauth) {
                                 $this - > oauth = $oauth;
                             }
