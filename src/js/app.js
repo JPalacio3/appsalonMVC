@@ -129,7 +129,7 @@ function paginaSiguiente() {
 async function consultarAPI() {
 
     try {
-        const url = 'https://calm-eyrie-61964.herokuapp.com/';
+        const url = 'https://calm-eyrie-61964.herokuapp.com/cita';
         const resultado = await fetch(url);
         const servicios = await resultado.json();
         mostrarServicios(servicios);
