@@ -44,7 +44,7 @@ class Email
     confirmarla presionando el siguiente enlace</p>";
         $contenido .= "<p> Presiona Aqui: <a href='https://calm-eyrie-61964.herokuapp.com/?tok=" . $this->token . "'> Confirmar
         Cuenta</a></p>";
-        $contenido .= "<p>Este correo se genera de manera automatica por el sistema, <br>Si tu no solicitaste esta cuenta, puedes
+        $contenido .= "<p>Este correo se genera de manera automatica por el sistema, <br>Si tú no solicitaste esta cuenta, puedes
     ignorar este mensaje</p>";
         $contenido .= "
 
