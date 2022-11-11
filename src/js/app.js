@@ -364,7 +364,7 @@ async function reservarCita() {
     try {
 
         // Petición hacia la api
-        const url = 'https://calm-eyrie-61964.herokuapp.com/api/citas';
+        const url = 'https://calm-eyrie-61964.herokuapp.com/api/cita';
         const respuesta = await fetch(url,{
             method: 'POST',
             body: datos
